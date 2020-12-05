@@ -14,6 +14,7 @@ import ChatWindow from "./ChatWindow";
 import Noty from "noty";
 import "../../node_modules/noty/lib/noty.css";
 import "../../node_modules/noty/lib/themes/relax.css";
+import Footer from "./Footer";
 
 export default function ProductPage() {
   let { id } = useParams();
@@ -160,6 +161,7 @@ export default function ProductPage() {
   };
 
   return (
+    <div>
     <div className="flex flex-col align-center mx-40 p-8 mt-5">
       {item && user && (
         <div>
@@ -300,6 +302,9 @@ export default function ProductPage() {
           </div>
         </div>
       )}
+    
+    </div>
+      <Footer />
     </div>
   );
 }

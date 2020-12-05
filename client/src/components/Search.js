@@ -67,7 +67,7 @@ export default function Search() {
           </div>
         )}
       </div>
-
+<Footer />
     </div>
   );
 }

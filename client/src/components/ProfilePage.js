@@ -3,6 +3,7 @@ import { getProfile, updateProfile } from "../services/requests";
 import ProductList from "./ProductList";
 import BorrowedProductList from "./BorrowedProductList";
 import UpdatePicture from "./UpdatePicture";
+import Footer from "./Footer";
 
 const apiKey = "AIzaSyCY5W1P8DPRt-14tjH8O4jiLsFxxRp2Jl8";
 
@@ -138,6 +139,7 @@ export default function ProfilePage(props) {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 }
