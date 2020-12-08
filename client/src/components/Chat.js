@@ -12,10 +12,11 @@ export default function Chat({ sender, receiver, name, photo, close }) {
 
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher("2985b7ef897701726d64", {
+    var pusher = new Pusher(process.env.REACT_APP_PUSHER_KEY, {
       cluster: "eu",
       forceTLS: true,
     });
+
 
     const ids = [sender, receiver].sort();
     const channelName = `chat-${ids[0]}-${ids[1]}`;
@@ -114,5 +115,3 @@ export default function Chat({ sender, receiver, name, photo, close }) {
     </div>
   );
 }
-
-

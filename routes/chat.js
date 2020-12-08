@@ -8,14 +8,12 @@ const isLoggedIn = require("../guards/isLoggedIn");
 const Pusher = require("pusher");
 
 const pusher = new Pusher({
-  appId: process.env.PUSHER_APP_ID,
-  key: process.env.PUSHER_KEY,
-  secret: process.env.PUSHER_SECRET,
+  appId: "1108081",
+  key: "2985b7ef897701726d64",
+  secret: "11dbeb549e59bd3fae6e",
   cluster: "eu",
   useTLS: true,
 });
-
-
 
 router.post("/messages/:id", isLoggedIn, (req, res) => {
   const receiver_id = req.params.id;
