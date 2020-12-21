@@ -187,7 +187,7 @@ export default function Filters() {
 
   return (
     <div>
-      <div className="py-3 pl-8 border-t border-b border-gray-500">
+      <div className="py-3 p border-t border-b border-gray-500 text-center">
         <select
           className="w-64 border shadow-sm p-2 mr-3 rounded-full focus:outline-none"
           name="category_id"
