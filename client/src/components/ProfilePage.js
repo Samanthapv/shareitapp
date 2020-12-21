@@ -82,63 +82,65 @@ export default function ProfilePage(props) {
   };
 
   return (
-    <div className="text-center mt-4 ">
-      <UpdatePicture
-        show={show}
-        handleClose={hidePopUp}
-        userID={user.id}
-        callback1={hidePopUp}
-        callback2={setLoad}
-      />
+    <div>
+      <div className="text-center mt-4 min-h-screen">
+        <UpdatePicture
+          show={show}
+          handleClose={hidePopUp}
+          userID={user.id}
+          callback1={hidePopUp}
+          callback2={setLoad}
+        />
 
-      {user && (
-        <div>
-          <div className="mainProfileDiv py-4 flex justify-center gap-4">
-            {user.picture && (
-              <img
-                onClick={showPopUp}
-                className="rounded-full cursor w-32 h-32 self-center object-fit border-4 border-indigo-500 border-opacity-50 hover:opacity-75"
-                src={
-                  user.picture.substring(0, 5) === "https"
-                    ? user.picture
-                    : `/../../../${user.picture.substring(
-                        7,
-                        user.picture.length
-                      )}`
-                }
-                alt="profile-pic"
-              />
-            )}
-
-            <div className=" flex flex-col justify-around">
-              <h2 className="title">Hi there, {user.name}!</h2>
-              {!user.address ? (
-                <p>let us know the location of your products!</p>
-              ) : (
-                <p>your products location:</p>
-              )}
-              <div className="flex flex-row justify-center">
-                <input
-                  className="cursor text-center border-b-2 border-black border-dotted w-100 "
-                  type="text"
-                  defaultValue={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  onClick={changeEditMode}
+        {user && (
+          <div>
+            <div className="mainProfileDiv py-4 flex justify-center gap-4">
+              {user.picture && (
+                <img
+                  onClick={showPopUp}
+                  className="rounded-full cursor w-32 h-32 self-center object-fit border-4 border-indigo-500 border-opacity-50 hover:opacity-75"
+                  src={
+                    user.picture.substring(0, 5) === "https"
+                      ? user.picture
+                      : `/../../../${user.picture.substring(
+                          7,
+                          user.picture.length
+                        )}`
+                  }
+                  alt="profile-pic"
                 />
-                {editMode && (
-                  <button className="btn  btn-link" onClick={addressSubmit}>
-                    <i className="fas fa-check-circle"></i>
-                  </button>
-                )}{" "}
+              )}
+
+              <div className=" flex flex-col justify-around">
+                <h2 className="title">Hi there, {user.name}!</h2>
+                {!user.address ? (
+                  <p>let us know the location of your products!</p>
+                ) : (
+                  <p>your products location:</p>
+                )}
+                <div className="flex flex-row justify-center">
+                  <input
+                    className="cursor text-center border-b-2 border-black border-dotted w-100 "
+                    type="text"
+                    defaultValue={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    onClick={changeEditMode}
+                  />
+                  {editMode && (
+                    <button className="btn  btn-link" onClick={addressSubmit}>
+                      <i className="fas fa-check-circle"></i>
+                    </button>
+                  )}{" "}
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="container flex flex-row justify-center mt-8">
-            <ProductList show={show} /> <BorrowedProductList id={user.id} />
+            <div className="container flex flex-row justify-center mt-8">
+              <ProductList show={show} /> <BorrowedProductList id={user.id} />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
       <Footer />
     </div>
   );

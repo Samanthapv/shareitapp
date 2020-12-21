@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -162,148 +161,149 @@ export default function ProductPage() {
 
   return (
     <div>
-    <div className="flex flex-col align-center mx-40 p-8 mt-5">
-      {item && user && (
-        <div>
-          <ChatWindow
-            show={show}
-            handleClose={hidePopUp}
-            sender={user.id}
-            receiver={item.UserId}
-            name={item.User.name}
-            photo={item.User.picture}
-            callback1={hidePopUp}
-          />
+      <div className="flex flex-col align-center mx-40 p-8 mt-5">
+        {item && user && (
+          <div>
+            <ChatWindow
+              show={show}
+              handleClose={hidePopUp}
+              sender={user.id}
+              receiver={item.UserId}
+              name={item.User.name}
+              photo={item.User.picture}
+              callback1={hidePopUp}
+            />
 
-          <div className="flex flex-col text-center h-height pt-3">
-            <div className="flex flex-row justify-around gap-1">
-              <img
-                alt="product"
-                className=" lg:w-1/2 w-64 object-cover object-center rounded border border-gray-200 mt-36"
-                src={
-                  item.picture.substring(0, 5) === "https"
-                    ? item.picture
-                    : `/../../../${item.picture.substring(
-                        7,
-                        item.picture.length
-                      )}`
-                }
-              />
+            <div className="flex flex-col text-center h-height pt-3">
+              <div className="flex flex-row justify-around gap-1">
+                <img
+                  alt="product"
+                  className=" lg:w-1/2 w-64 object-cover object-center rounded border border-gray-200 mt-36"
+                  src={
+                    item.picture.substring(0, 5) === "https"
+                      ? item.picture
+                      : `/../../../${item.picture.substring(
+                          7,
+                          item.picture.length
+                        )}`
+                  }
+                />
 
-              <div className="flex flex-col text-center border rounded-md border-gray-700 w-50 pt-5">
-                <div className="flex flex-row justify-center items-center gap-1 mb-1">
-                  <img
-                    alt="Placeholder"
-                    className="block rounded-full h-8 w-8 object-cover"
-                    src={ item.User.picture.substring(0, 5) === "https"
-                    ? item.User.picture
-                    : `/../../../${item.User.picture.substring(
-                      7,
-                      item.User.picture.length
-                    )}`}
-                  />
-
-                  <h2 className="text-sm title-font text-gray-500 tracking-widest">
-                    {item.User.name}
-                  </h2>
-                </div>
-
-                <h1 className="text-indigo-700 text-3xl title-font font-medium">
-                  {item.name}{" "}
-                  <span className="text-sm text-black">
-                    | {item.pricePerDay} <i className="fas fa-coins    "></i> /
-                    day
-                  </span>
-                </h1>
-
-                {avgRating ? (
-                  <div>
-                    <p className="px-80">Rating:</p>
-                    <StarRatingComponent
-                      name={item.id}
-                      starCount={5}
-                      value={avgRating}
-                      editing={false}
+                <div className="flex flex-col text-center border rounded-md border-gray-700 w-50 pt-5">
+                  <div className="flex flex-row justify-center items-center gap-1 mb-1">
+                    <img
+                      alt="Placeholder"
+                      className="block rounded-full h-8 w-8 object-cover"
+                      src={
+                        item.User.picture.substring(0, 5) === "https"
+                          ? item.User.picture
+                          : `/../../../${item.User.picture.substring(
+                              7,
+                              item.User.picture.length
+                            )}`
+                      }
                     />
-                  </div>
-                ) : (
-                  <p>no ratings yet</p>
-                )}
 
-                <small className="text-muted mb-1">
-                  added on {item.createdAt.substring(0, 10)}
-                </small>
-                <p className="leading-relaxed px-48 ">{item.description}</p>
-                <p className="text-capitalize">Condition: {item.condition}</p>
-                <div className="d-flex justify-content-center">
-                  {item.UserId !== user?.id && !reserved && (
+                    <h2 className="text-sm title-font text-gray-500 tracking-widest">
+                      {item.User.name}
+                    </h2>
+                  </div>
+
+                  <h1 className="text-indigo-700 text-3xl title-font font-medium">
+                    {item.name}{" "}
+                    <span className="text-sm text-black">
+                      | {item.pricePerDay} <i className="fas fa-coins    "></i>{" "}
+                      / day
+                    </span>
+                  </h1>
+
+                  {avgRating ? (
                     <div>
-                      <h4 className="font-semibold mt-2 ">Select dates</h4>
-                      <small>
-                        Max availability: {item.numOfDaysAvailable} days
-                      </small>
-                      <div className="text-center ">
-                        <DateRange
-                          productId={item.id}
-                          changeStartDate={setStartDate}
-                          changeEndDate={setEndDate}
-                          maxAvailableDays={item.numOfDaysAvailable}
-                        />
-                      </div>
+                      <p className="px-80">Rating:</p>
+                      <StarRatingComponent
+                        name={item.id}
+                        starCount={5}
+                        value={avgRating}
+                        editing={false}
+                      />
                     </div>
+                  ) : (
+                    <p>no ratings yet</p>
                   )}
-                </div>
-                <div className="flex flex-row justify-around mt-3">
-                  <span className="title-font font-medium text-xl text-gray-900">
-                    Total: {pointTotal} <i className="fas fa-coins    "></i>
-                  </span>
-                  <div className="flex">
-                    <button
-                      onClick={() => borrowItem(item.id)}
-                      className="btn btn-primary mb-2"
-                      disabled={!(startDate && endDate) ? true : false}
-                    >
-                      Reserve
-                    </button>
-                    <button
-                      className="btn mb-2 btn-primary"
-                      onClick={() => showPopUp()}
-                    >
-                      <i className="far fa-comment"></i>
-                    </button>
+
+                  <small className="text-muted mb-1">
+                    added on {item.createdAt.substring(0, 10)}
+                  </small>
+                  <p className="leading-relaxed px-48 ">{item.description}</p>
+                  <p className="text-capitalize">Condition: {item.condition}</p>
+                  <div className="d-flex justify-content-center">
+                    {item.UserId !== user?.id && !reserved && (
+                      <div>
+                        <h4 className="font-semibold mt-2 ">Select dates</h4>
+                        <small>
+                          Max availability: {item.numOfDaysAvailable} days
+                        </small>
+                        <div className="text-center ">
+                          <DateRange
+                            productId={item.id}
+                            changeStartDate={setStartDate}
+                            changeEndDate={setEndDate}
+                            maxAvailableDays={item.numOfDaysAvailable}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex flex-row justify-around mt-3">
+                    <span className="title-font font-medium text-xl text-gray-900">
+                      Total: {pointTotal} <i className="fas fa-coins    "></i>
+                    </span>
+                    <div className="flex">
+                      <button
+                        onClick={() => borrowItem(item.id)}
+                        className="btn btn-primary mb-2"
+                        disabled={!(startDate && endDate) ? true : false}
+                      >
+                        Reserve
+                      </button>
+                      <button
+                        className="btn mb-2 btn-primary"
+                        onClick={() => showPopUp()}
+                      >
+                        <i className="far fa-comment"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="flex flex-row justify-evenly  pr-3">
-              <div className="w-1/2 overflow-hidden ml-1 pl-4 text-center">
-                <div className="flex flex-col justify-center w-75 mt-1">
-                  <p className="text-xl text-indigo-700 mt-1">Reviews</p>
-                  {requests
-                    .filter((request) => request.review)
-                    .map((request) => (
-                      <ReviewCard key={request.id} request={request} />
-                    ))}
+              <div className="flex flex-row justify-evenly  pr-3">
+                <div className="w-1/2 overflow-hidden ml-1 pl-4 text-center">
+                  <div className="flex flex-col justify-center w-75 mt-1">
+                    <p className="text-xl text-indigo-700 mt-1">Reviews</p>
+                    {requests
+                      .filter((request) => request.review)
+                      .map((request) => (
+                        <ReviewCard key={request.id} request={request} />
+                      ))}
+                  </div>
                 </div>
-              </div>
 
-              <div
-                className="w-1/2 overflow-hidden"
-                style={{ marginBottom: "500px" }}
-              >
-                <div className="mt-3">
-                  {item.User && (
-                    <MapContainer lat={item.User.lat} lng={item.User.lng} />
-                  )}
+                <div
+                  className="w-1/2 overflow-hidden"
+                  style={{ marginBottom: "500px" }}
+                >
+                  <div className="mt-3">
+                    {item.User && (
+                      <MapContainer lat={item.User.lat} lng={item.User.lng} />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-    
-    </div>
+        )}
+      </div>
       <Footer />
     </div>
   );
