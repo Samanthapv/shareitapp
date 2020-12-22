@@ -187,7 +187,7 @@ export default function Filters() {
 
   return (
     <div>
-      <div className="py-3 p border-t border-b border-gray-500 text-center">
+      <div className="py-3 pl-8 border-t border-b border-gray-500 text-center">
         <select
           className="w-64 border shadow-sm p-2 mr-3 rounded-full focus:outline-none"
           name="category_id"
@@ -243,40 +243,45 @@ export default function Filters() {
           <i className="far fa-times-circle"></i>
         </button>
       </div>
-      <div className="py-1 pl-10 bg-indigo-400 text-white">
-        <button
-          className="focus:outline-none"
-          title="Change location"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <i className="fas fa-map-marker-alt mx-2"></i>
-          <span>{displayLocation}</span>
-        </button>
-      </div>
-      {isOpen && (
-        <div className="absolute left-0 ml-12 mt-2 w-1/4 border rounded bg-white text-center">
-          <div className="m-4">
-            <input
-              placeholder="Your address"
-              onChange={(e) => setSearchAddress(e.target.value)}
-              value={searchAddress}
-              className="border w-full p-2 mb-6 rounded focus:outline-none"
-              type="text"
-            />
-            <div className="flex justify-end">
-              <button
-                onClick={() => setIsOpen(false)}
-                className="btn btn-outline"
-              >
-                Cancel
-              </button>
-              <button onClick={setLocation} className="btn btn-primary ml-2">
-                Set location
-              </button>
+      <div className="py-1 bg-indigo-400 text-white text-center">
+        <div className="relative w-1/3 mx-auto">
+          <button
+            className="focus:outline-none"
+            title="Change location"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <i className="fas fa-map-marker-alt mx-2"></i>
+            <span>{displayLocation}</span>
+          </button>
+          {isOpen && (
+            <div className="absolute w-full mt-2 border rounded bg-white text-center">
+              <div className="m-4 text-black">
+                <input
+                  placeholder="Your address"
+                  onChange={(e) => setSearchAddress(e.target.value)}
+                  value={searchAddress}
+                  className="border w-full p-2 mb-6 rounded focus:outline-none"
+                  type="text"
+                />
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="btn btn-outline"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={setLocation}
+                    className="btn btn-primary ml-2"
+                  >
+                    Set location
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
